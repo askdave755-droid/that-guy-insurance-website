@@ -3,121 +3,677 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>That Guy Insurance Firm LLC | Your Go-To Insurance Expert</title>
+    <title>That Guy Insurance Firm LLC | AI-Powered Insurance for the Hard-to-Insure</title>
+    <meta name="description" content="AI-powered insurance quotes for 1099 contractors, truckers, and specialty trades. 20+ carriers, instant quotes, same-day COI.">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #333; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 60px 0; text-align: center; }
-        header h1 { font-size: 3em; margin-bottom: 10px; }
-        .tagline { font-size: 1.3em; opacity: 0.9; }
-        section { padding: 60px 0; }
-        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 40px; color: #1e3a8a; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: #f8fafc; padding: 30px; border-radius: 10px; border-left: 4px solid #f59e0b; }
-        .highlight { background: #fef3c7; padding: 30px; border-radius: 10px; margin: 40px 0; border-left: 4px solid #f59e0b; }
-        .sms-form { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #374151; }
-        .form-group input { width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; }
-        .btn { display: inline-block; background: #f59e0b; color: #1e3a8a; padding: 15px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; width: 100%; }
-        .compliance-text { font-size: 0.85rem; color: #6b7280; margin: 20px 0; padding: 15px; background: #f9fafb; border-radius: 8px; line-height: 1.5; }
-        .contact-section { background: #1e3a8a; color: white; padding: 60px 0; }
-        footer { background: #0f172a; color: #94a3b8; padding: 40px 0; text-align: center; }
-        footer a { color: #f59e0b; margin: 0 15px; text-decoration: none; }
-        @media (max-width: 768px) { header h1 { font-size: 2em; } }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --space-blue: #020617;
+            --panel-blue: #0f172a;
+            --card-blue: #1e293b;
+            --neon-cyan: #06b6d4;
+            --electric-blue: #3b82f6;
+            --text-gray: #94a3b8;
+            --text-light: #e2e8f0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--space-blue);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            background: rgba(2, 6, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+        
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--neon-cyan);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .nav-links a:hover {
+            color: var(--neon-cyan);
+        }
+        
+        .phone-btn {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .phone-btn:hover {
+            background: var(--electric-blue);
+            color: white;
+        }
+        
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--space-blue) 0%, var(--panel-blue) 100%);
+            padding: 60px 20px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 60px;
+            align-items: start;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            padding-top: 20px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            letter-spacing: 0.5px;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 800;
+            background: linear-gradient(135deg, white 0%, var(--text-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .hero-cta {
+            font-size: 1.1rem;
+            color: var(--electric-blue);
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+        
+        .features {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+        
+        .feature::before {
+            content: '✓';
+            color: var(--neon-cyan);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        /* Form Card */
+        .form-card {
+            background: var(--card-blue);
+            border: 2px solid rgba(6, 182, 212, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .form-card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        
+        .form-subtitle {
+            color: var(--neon-cyan);
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .widget-container {
+            min-height: 420px;
+            margin-bottom: 15px;
+        }
+        
+        /* Compliance Text */
+        .compliance-text {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .compliance-text a {
+            color: var(--neon-cyan);
+            text-decoration: none;
+        }
+        
+        .compliance-text a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Specialty Section */
+        .specialties {
+            background: var(--panel-blue);
+            padding: 80px 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            margin-bottom: 50px;
+        }
+        
+        .section-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+        
+        .specialty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .specialty-card {
+            background: var(--card-blue);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-cyan);
+        }
+        
+        .specialty-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .specialty-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .specialty-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Trust Section */
+        .trust {
+            background: var(--space-blue);
+            padding: 60px 20px;
+            border-top: 1px solid rgba(6, 182, 212, 0.1);
+        }
+        
+        .trust-content {
+            text-align: center;
+        }
+        
+        .trust h3 {
+            color: var(--text-gray);
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--neon-cyan);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #000;
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 60px 20px 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+        
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .footer-brand p {
+            color: var(--text-gray);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            color: var(--text-gray);
+            line-height: 2;
+        }
+        
+        .contact-info strong {
+            color: white;
+        }
+        
+        .footer-links h4 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--neon-cyan);
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--text-gray);
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        
+        .footer-bottom a:hover {
+            color: var(--neon-cyan);
+        }
+        
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .phone-btn {
+                display: none;
+            }
+            
+            .features {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .stats {
+                gap: 30px;
+            }
+            
+            .logo img {
+                height: 40px;
+            }
+            
+            .form-card {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="container">
-        <h1>That Guy Insurance Firm LLC</h1>
-        <p class="tagline">Your Go-To Insurance Guy • Making Insurance Simple, Honest & Stress-Free</p>
-        <p style="margin-top: 20px; font-size: 1.1em;">📍 500 N Metro Blvd, Unit 2141, Chandler, AZ 85226</p>
-        <p style="margin-top: 10px;">📞 (760) 858-1333 | 📞 Toll-Free: (866) 203-0477</p>
-        <p style="margin-top: 10px;">✉️ drafaelife@gmail.com | dave@tgrinsurance.work</p>
-    </div>
-</header>
-
-<section id="sms-alerts">
-    <div class="container">
-        <div class="sms-form">
-            <h2 style="text-align: center; color: #1e3a8a; margin-bottom: 10px;">Subscribe for SMS Alerts</h2>
-            <p style="text-align: center; color: #6b7280; margin-bottom: 30px;">Get deals, sales and other tips sent to your mobile.</p>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="logo-header.png" alt="That Guy Insurance Logo">
+                <div class="logo-text">
+                    That Guy Insurance
+                    <span>POWERED BY AI</span>
+                </div>
+            </a>
             
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                <div class="form-group">
-                    <label>Your name</label>
-                    <input type="text" name="name" required placeholder="John Smith">
-                </div>
+            <ul class="nav-links">
+                <li><a href="#specialties">Specialty Jobs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <a href="tel:7608581333" class="phone-btn">(760) 858-1333</a>
+            
+            <button class="mobile-menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="badge">⚡ AI-POWERED INSTANT QUOTES</div>
                 
-                <div class="form-group">
-                    <label>Your mobile phone</label>
-                    <input type="tel" name="phone" required placeholder="(760) 555-1234">
-                </div>
+                <h1>Insurance for the Hard-to-Insure</h1>
                 
-                <div class="form-group">
-                    <label>Your email</label>
-                    <input type="email" name="email" required placeholder="john@example.com">
+                <p class="hero-subtitle">
+                    1099 contractors, truckers, and specialty trades rejected by standard carriers?
+                </p>
+                
+                <p class="hero-cta">
+                    Our AI shops 20+ markets instantly. Get a call in 60 seconds.
+                </p>
+                
+                <div class="features">
+                    <div class="feature">20+ A-Rated Carriers</div>
+                    <div class="feature">Same-Day COI Delivery</div>
+                    <div class="feature">High-Risk Class Codes Welcome</div>
+                </div>
+            </div>
+            
+            <!-- TextMagic Widget Form Card -->
+            <div class="form-card">
+                <h2>Get Your Instant Quote</h2>
+                <p class="form-subtitle">AI will call you in 60 seconds</p>
+                
+                <!-- TextMagic SMS Subscription Widget -->
+                <div class="widget-container">
+                    <script src="https://widgets.textmagic.com/widget-script.js" data-code="c5ed5499f5d61d0" data-type="subscribe" defer></script>
                 </div>
                 
                 <div class="compliance-text">
-                    <p><strong>Consent & Compliance:</strong></p>
-                    <p>You can later unsubscribe simply by texting STOP.</p>
-                    <p style="margin-top: 10px;">By submitting your number, you consent to receive FOLLOW UP AND BOOKING Messages from That Guy Insurance Firm LLC. Message frequency varies. Text STOP to opt out or HELP for support. Message and data rates may apply.</p>
+                    By subscribing, you consent to receive FOLLOW UP AND BOOKING Messages from That Guy Insurance Firm LLC. 
+                    Message frequency varies. Text STOP to opt out or HELP for support. Message and data rates may apply.
+                    <br><br>
+                    <a href="privacy-policy.html">Privacy Policy</a> | <a href="sms-terms.html">SMS Terms</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialties Section -->
+    <section class="specialties" id="specialties">
+        <div class="container">
+            <div class="section-header">
+                <h2>Specialized Coverage For:</h2>
+                <p>If standard carriers turned you down, we can help.</p>
+            </div>
+            
+            <div class="specialty-grid">
+                <div class="specialty-card">
+                    <div class="specialty-icon">🚛</div>
+                    <h3>Owner-Operators</h3>
+                    <p>Box trucks, hotshots, and semi owner-operators rejected by standard markets. We understand MC authority and cargo needs.</p>
                 </div>
                 
-                <button type="submit" class="btn">Subscribe</button>
-            </form>
+                <div class="specialty-card">
+                    <div class="specialty-icon">👷</div>
+                    <h3>1099 Contractors</h3>
+                    <p>Independent contractors, gig workers, and freelancers. Get the coverage you need without the runaround.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-icon">🏘️</div>
+                    <h3>Real Estate Investors</h3>
+                    <p>Property flippers, landlords, and rental portfolio owners. Coverage that understands investment properties.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-icon">⚡</div>
+                    <h3>Specialty Trades</h3>
+                    <p>Roofers, electricians, plumbers, and HVAC with high-risk classifications. We know your industry.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-icon">🚗</div>
+                    <h3>Delivery Drivers</h3>
+                    <p>Amazon DSP, FedEx contractors, and last-mile delivery. Personal auto won't cut it—get proper coverage.</p>
+                </div>
+                
+                <div class="specialty-card">
+                    <div class="specialty-icon">🔧</div>
+                    <h3>Construction Subs</h3>
+                    <p>Subcontractors of all trades. Meet general contractor requirements without breaking the bank.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust">
+        <div class="container trust-content">
+            <h3>Trusted by Independent Contractors Nationwide</h3>
             
-            <div style="display: none; background: #10b981; color: white; padding: 15px; border-radius: 8px; text-align: center; margin-top: 20px;">
-                Thank you for subscribing!
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">A-Rated Carriers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">60sec</span>
+                    <span class="stat-label">AI Response Time</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Quote Availability</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$2.4M</span>
+                    <span class="stat-label">Client Savings</span>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section style="background: #f3f4f6;">
-    <div class="container">
-        <h2 class="section-title">Insurance Services</h2>
-        <div class="grid">
-            <div class="card">
-                <h3 style="color: #1e3a8a; margin-bottom: 15px;">🚛 Commercial Auto</h3>
-                <p>Coverage for business vehicles, fleets, and trucks. We shop 45+ carriers to get you the best rate.</p>
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>That Guy Insurance Firm LLC</h3>
+                <p>Making insurance simple, honest, and stress-free for the hard-to-insure. Your go-to insurance guy for commercial coverage.</p>
+                
+                <div class="contact-info">
+                    <div><strong>📍 Address:</strong><br>
+                    500 N Metro Blvd, Unit 2141<br>
+                    Chandler, AZ 85226</div>
+                    <br>
+                    <div><strong>📞 Phone:</strong><br>
+                    (760) 858-1333<br>
+                    Toll-Free: (866) 203-0477</div>
+                    <br>
+                    <div><strong>✉️ Email:</strong><br>
+                    drafaelife@gmail.com<br>
+                    dave@tgrinsurance.work</div>
+                </div>
             </div>
-            <div class="card">
-                <h3 style="color: #1e3a8a; margin-bottom: 15px;">👷 Workers Compensation</h3>
-                <p>Required coverage for your employees. We handle the paperwork and help lower your rates.</p>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#specialties">Specialty Coverage</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
             </div>
-            <div class="card">
-                <h3 style="color: #1e3a8a; margin-bottom: 15px;">🏢 General Liability</h3>
-                <p>Protection against lawsuits and property damage. Essential for any business.</p>
+            
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="sms-terms.html">SMS Terms</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-</section>
-
-<div class="contact-section">
-    <div class="container" style="text-align: center;">
-        <h2 style="margin-bottom: 30px;">Get a Free Quote Today</h2>
-        <p style="font-size: 1.2em; margin-bottom: 20px;">Let That Guy Handle Your Insurance</p>
-        <a href="tel:7608581333" style="color: #f59e0b; font-size: 1.5em; text-decoration: none; font-weight: bold;">(760) 858-1333</a>
-    </div>
-</div>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2026 That Guy Insurance Firm LLC. All rights reserved.</p>
-        <p style="margin-top: 15px;">
-            <a href="privacy-policy.html">Privacy Policy</a>
-            <a href="sms-terms.html">SMS Terms</a>
-        </p>
-        <p style="margin-top: 20px; font-size: 0.9em;">
-            Licensed in 20 States • Arizona License Available Upon Request
-        </p>
-    </div>
-</footer>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 That Guy Insurance Firm LLC. All rights reserved.</p>
+            <p style="margin-top: 10px;">
+                Licensed in 20 States • Arizona License Available Upon Request
+            </p>
+        </div>
+    </footer>
 
 </body>
 </html>
