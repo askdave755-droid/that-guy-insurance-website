@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>That Guy Insurance Firm LLC | Your Go-To Insurance Expert</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 60px 0; text-align: center; }
+        header h1 { font-size: 3em; margin-bottom: 10px; }
+        .tagline { font-size: 1.3em; opacity: 0.9; }
+        section { padding: 60px 0; }
+        .section-title { text-align: center; font-size: 2.5em; margin-bottom: 40px; color: #1e3a8a; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: #f8fafc; padding: 30px; border-radius: 10px; border-left: 4px solid #f59e0b; }
+        .highlight { background: #fef3c7; padding: 30px; border-radius: 10px; margin: 40px 0; border-left: 4px solid #f59e0b; }
+        .sms-form { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #374151; }
+        .form-group input { width: 100%; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; font-size: 1rem; }
+        .btn { display: inline-block; background: #f59e0b; color: #1e3a8a; padding: 15px 40px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 1.1rem; border: none; cursor: pointer; width: 100%; }
+        .compliance-text { font-size: 0.85rem; color: #6b7280; margin: 20px 0; padding: 15px; background: #f9fafb; border-radius: 8px; line-height: 1.5; }
+        .contact-section { background: #1e3a8a; color: white; padding: 60px 0; }
+        footer { background: #0f172a; color: #94a3b8; padding: 40px 0; text-align: center; }
+        footer a { color: #f59e0b; margin: 0 15px; text-decoration: none; }
+        @media (max-width: 768px) { header h1 { font-size: 2em; } }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>That Guy Insurance Firm LLC</h1>
+        <p class="tagline">Your Go-To Insurance Guy • Making Insurance Simple, Honest & Stress-Free</p>
+        <p style="margin-top: 20px; font-size: 1.1em;">📍 500 N Metro Blvd, Unit 2141, Chandler, AZ 85226</p>
+        <p style="margin-top: 10px;">📞 (760) 858-1333 | 📞 Toll-Free: (866) 203-0477</p>
+        <p style="margin-top: 10px;">✉️ drafaelife@gmail.com | dave@tgrinsurance.work</p>
+    </div>
+</header>
+
+<section id="sms-alerts">
+    <div class="container">
+        <div class="sms-form">
+            <h2 style="text-align: center; color: #1e3a8a; margin-bottom: 10px;">Subscribe for SMS Alerts</h2>
+            <p style="text-align: center; color: #6b7280; margin-bottom: 30px;">Get deals, sales and other tips sent to your mobile.</p>
+            
+            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                <div class="form-group">
+                    <label>Your name</label>
+                    <input type="text" name="name" required placeholder="John Smith">
+                </div>
+                
+                <div class="form-group">
+                    <label>Your mobile phone</label>
+                    <input type="tel" name="phone" required placeholder="(760) 555-1234">
+                </div>
+                
+                <div class="form-group">
+                    <label>Your email</label>
+                    <input type="email" name="email" required placeholder="john@example.com">
+                </div>
+                
+                <div class="compliance-text">
+                    <p><strong>Consent & Compliance:</strong></p>
+                    <p>You can later unsubscribe simply by texting STOP.</p>
+                    <p style="margin-top: 10px;">By submitting your number, you consent to receive FOLLOW UP AND BOOKING Messages from That Guy Insurance Firm LLC. Message frequency varies. Text STOP to opt out or HELP for support. Message and data rates may apply.</p>
+                </div>
+                
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+            
+            <div style="display: none; background: #10b981; color: white; padding: 15px; border-radius: 8px; text-align: center; margin-top: 20px;">
+                Thank you for subscribing!
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background: #f3f4f6;">
+    <div class="container">
+        <h2 class="section-title">Insurance Services</h2>
+        <div class="grid">
+            <div class="card">
+                <h3 style="color: #1e3a8a; margin-bottom: 15px;">🚛 Commercial Auto</h3>
+                <p>Coverage for business vehicles, fleets, and trucks. We shop 45+ carriers to get you the best rate.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: #1e3a8a; margin-bottom: 15px;">👷 Workers Compensation</h3>
+                <p>Required coverage for your employees. We handle the paperwork and help lower your rates.</p>
+            </div>
+            <div class="card">
+                <h3 style="color: #1e3a8a; margin-bottom: 15px;">🏢 General Liability</h3>
+                <p>Protection against lawsuits and property damage. Essential for any business.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="contact-section">
+    <div class="container" style="text-align: center;">
+        <h2 style="margin-bottom: 30px;">Get a Free Quote Today</h2>
+        <p style="font-size: 1.2em; margin-bottom: 20px;">Let That Guy Handle Your Insurance</p>
+        <a href="tel:7608581333" style="color: #f59e0b; font-size: 1.5em; text-decoration: none; font-weight: bold;">(760) 858-1333</a>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 That Guy Insurance Firm LLC. All rights reserved.</p>
+        <p style="margin-top: 15px;">
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="sms-terms.html">SMS Terms</a>
+        </p>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+            Licensed in 20 States • Arizona License Available Upon Request
+        </p>
+    </div>
+</footer>
+
+</body>
+</html>
