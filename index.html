@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>That Guy Insurance Firm LLC | AI-Powered Insurance for the Hard-to-Insure</title>
+    <title>Nexus G Partners LLC | AI-Powered Insurance for the Hard-to-Insure</title>
     <meta name="description" content="AI-powered insurance quotes for 1099 contractors, truckers, and specialty trades. 20+ carriers, instant quotes, same-day COI.">
     <style>
         * {
@@ -239,6 +239,89 @@
         .widget-container {
             min-height: 420px;
             margin-bottom: 15px;
+        }
+        
+        /* Brevo Form */
+        .brevo-form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .brevo-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--panel-blue);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .brevo-input:focus {
+            border-color: var(--neon-cyan);
+        }
+        
+        .brevo-input::placeholder {
+            color: var(--text-gray);
+        }
+        
+        .brevo-consent {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.78rem;
+            color: var(--text-gray);
+            line-height: 1.4;
+            cursor: pointer;
+        }
+        
+        .brevo-consent input {
+            margin-top: 2px;
+            accent-color: var(--neon-cyan);
+        }
+        
+        .brevo-submit {
+            background: linear-gradient(135deg, var(--electric-blue), var(--neon-cyan));
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .brevo-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(6, 182, 212, 0.3);
+        }
+        
+        .brevo-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .brevo-message {
+            font-size: 0.9rem;
+            text-align: center;
+            min-height: 1.2em;
+            display: none;
+        }
+        
+        .brevo-message.success {
+            display: block;
+            color: #4ade80;
+        }
+        
+        .brevo-message.error {
+            display: block;
+            color: #f87171;
         }
         
         /* Compliance Text */
@@ -492,9 +575,9 @@
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">
-                <img src="logo-header.png" alt="That Guy Insurance Logo">
+                <img src="logo-header.svg" alt="Nexus G Partners Logo">
                 <div class="logo-text">
-                    That Guy Insurance
+                    Nexus G Partners
                     <span>POWERED BY AI</span>
                 </div>
             </a>
@@ -533,18 +616,28 @@
                 </div>
             </div>
             
-            <!-- TextMagic Widget Form Card -->
+            <!-- Brevo SMS Signup Form Card -->
             <div class="form-card">
                 <h2>Get Your Instant Quote</h2>
                 <p class="form-subtitle">AI will call you in 60 seconds</p>
                 
-                <!-- TextMagic SMS Subscription Widget -->
-                <div class="widget-container">
-                    <script src="https://widgets.textmagic.com/widget-script.js" data-code="c5ed5499f5d61d0" data-type="subscribe" defer></script>
-                </div>
+                <!-- Brevo SMS Subscription Form -->
+                <form id="brevo-signup" class="brevo-form">
+                    <input type="text" id="brevo-firstname" class="brevo-input" placeholder="First Name" required>
+                    <input type="text" id="brevo-lastname" class="brevo-input" placeholder="Last Name">
+                    <input type="tel" id="brevo-phone" class="brevo-input" placeholder="Mobile Phone (e.g. 7605551234)" pattern="[0-9+()\-\s]{10,15}" required>
+                    
+                    <label class="brevo-consent">
+                        <input type="checkbox" id="brevo-consent-check" required>
+                        <span>I agree to receive follow-up and booking SMS messages from Nexus G Partners LLC.</span>
+                    </label>
+                    
+                    <button type="submit" class="brevo-submit" id="brevo-submit-btn">Get My Quote</button>
+                    <div id="brevo-message" class="brevo-message"></div>
+                </form>
                 
                 <div class="compliance-text">
-                    By subscribing, you consent to receive FOLLOW UP AND BOOKING Messages from That Guy Insurance Firm LLC. 
+                    By subscribing, you consent to receive FOLLOW UP AND BOOKING Messages from Nexus G Partners LLC. 
                     Message frequency varies. Text STOP to opt out or HELP for support. Message and data rates may apply.
                     <br><br>
                     <a href="privacy-policy.html">Privacy Policy</a> | <a href="sms-terms.html">SMS Terms</a>
@@ -631,7 +724,7 @@
     <footer id="contact">
         <div class="footer-grid">
             <div class="footer-brand">
-                <h3>That Guy Insurance Firm LLC</h3>
+                <h3>Nexus G Partners LLC</h3>
                 <p>Making insurance simple, honest, and stress-free for the hard-to-insure. Your go-to insurance guy for commercial coverage.</p>
                 
                 <div class="contact-info">
@@ -668,12 +761,96 @@
         </div>
         
         <div class="footer-bottom">
-            <p>&copy; 2026 That Guy Insurance Firm LLC. All rights reserved.</p>
+            <p>&copy; 2026 Nexus G Partners LLC. All rights reserved.</p>
             <p style="margin-top: 10px;">
                 Licensed in 20 States • Arizona License Available Upon Request
             </p>
         </div>
     </footer>
+
+    <!-- Brevo SMS Signup Integration -->
+    <script>
+        // ============================================
+        // BREVO CONFIGURATION — fill in your details
+        // ============================================
+        const BREVO_API_KEY = 'YOUR_BREVO_API_KEY';   // Brevo → SMTP & API → API Keys
+        const BREVO_LIST_ID = 0;                       // Brevo → Contacts → Lists → your list ID (a number)
+
+        function formatPhoneE164(raw) {
+            let digits = raw.replace(/\D/g, '');
+            if (digits.length === 10) digits = '1' + digits;
+            return '+' + digits;
+        }
+
+        document.getElementById('brevo-signup').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const btn = document.getElementById('brevo-submit-btn');
+            const msg = document.getElementById('brevo-message');
+            const firstName = document.getElementById('brevo-firstname').value.trim();
+            const lastName = document.getElementById('brevo-lastname').value.trim();
+            const phoneRaw = document.getElementById('brevo-phone').value.trim();
+
+            if (!BREVO_API_KEY || BREVO_API_KEY === 'YOUR_BREVO_API_KEY' || !BREVO_LIST_ID) {
+                msg.className = 'brevo-message error';
+                msg.textContent = 'Form not configured yet — Brevo API key and list ID needed.';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Submitting...';
+            msg.className = 'brevo-message';
+            msg.textContent = '';
+
+            const payload = {
+                attributes: {
+                    FIRSTNAME: firstName,
+                    LASTNAME: lastName,
+                    SMS: formatPhoneE164(phoneRaw)
+                },
+                listIds: [BREVO_LIST_ID],
+                updateEnabled: true
+            };
+
+            // Brevo contacts API requires an email identifier; use SMS-only fallback email
+            const smsDigits = payload.attributes.SMS.replace(/\D/g, '');
+            payload.email = `sms_${smsDigits}@sms.nexusgpartners.com`;
+
+            try {
+                const resp = await fetch('https://api.brevo.com/v3/contacts', {
+                    method: 'POST',
+                    headers: {
+                        'accept': 'application/json',
+                        'content-type': 'application/json',
+                        'api-key': BREVO_API_KEY
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (resp.ok || resp.status === 201 || resp.status === 204) {
+                    msg.className = 'brevo-message success';
+                    msg.textContent = `Thanks ${firstName}! You're signed up — we'll text you shortly.`;
+                    document.getElementById('brevo-signup').reset();
+                } else {
+                    const err = await resp.json().catch(() => ({}));
+                    // "Contact already exist" is fine — they were updated
+                    if (err.code === 'duplicate_parameter') {
+                        msg.className = 'brevo-message success';
+                        msg.textContent = `Thanks ${firstName}! Your number is updated.`;
+                    } else {
+                        throw new Error(err.message || 'Signup failed');
+                    }
+                }
+            } catch (err) {
+                msg.className = 'brevo-message error';
+                msg.textContent = 'Something went wrong — please call us at (760) 858-1333.';
+                console.error('Brevo signup error:', err);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Get My Quote';
+            }
+        });
+    </script>
 
 </body>
 </html>
