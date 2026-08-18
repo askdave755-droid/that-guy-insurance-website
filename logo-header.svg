@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#2563eb"/>
+    </linearGradient>
+  </defs>
+  <!-- Outer hexagon shield -->
+  <path d="M120 18 L210 69 L210 171 L120 222 L30 171 L30 69 Z"
+        fill="none" stroke="url(#g1)" stroke-width="14" stroke-linejoin="round"/>
+  <!-- Inner G formed as arrow shield -->
+  <path d="M120 62 L172 95 L172 108 L146 108 L120 92 L76 121 L76 161 L120 190 L164 161 L164 138 L120 138 L120 116 L188 116 L188 170 L120 214 L52 170 L52 112 Z"
+        fill="url(#g2)"/>
+</svg>
