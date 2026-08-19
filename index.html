@@ -770,17 +770,8 @@
 
     <!-- Brevo SMS Signup Integration -->
     <script>
-        // ============================================
-        // BREVO CONFIGURATION — fill in your details
-        // ============================================
-        const BREVO_API_KEY = 'YOUR_BREVO_API_KEY';   // Brevo → SMTP & API → API Keys
-        const BREVO_LIST_ID = 0;                       // Brevo → Contacts → Lists → your list ID (a number)
-
-        function formatPhoneE164(raw) {
-            let digits = raw.replace(/\D/g, '');
-            if (digits.length === 10) digits = '1' + digits;
-            return '+' + digits;
-        }
+        // Form submits to /api/subscribe (Vercel serverless function in api/subscribe.js).
+        // The Brevo API key lives in Vercel environment variables — never in this file.
 
         document.getElementById('brevo-signup').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -791,60 +782,38 @@
             const lastName = document.getElementById('brevo-lastname').value.trim();
             const phoneRaw = document.getElementById('brevo-phone').value.trim();
 
-            if (!BREVO_API_KEY || BREVO_API_KEY === 'YOUR_BREVO_API_KEY' || !BREVO_LIST_ID) {
-                msg.className = 'brevo-message error';
-                msg.textContent = 'Form not configured yet — Brevo API key and list ID needed.';
-                return;
-            }
-
             btn.disabled = true;
             btn.textContent = 'Submitting...';
             msg.className = 'brevo-message';
             msg.textContent = '';
 
-            const payload = {
-                attributes: {
-                    FIRSTNAME: firstName,
-                    LASTNAME: lastName,
-                    SMS: formatPhoneE164(phoneRaw)
-                },
-                listIds: [BREVO_LIST_ID],
-                updateEnabled: true
-            };
-
-            // Brevo contacts API requires an email identifier; use SMS-only fallback email
-            const smsDigits = payload.attributes.SMS.replace(/\D/g, '');
-            payload.email = `sms_${smsDigits}@sms.nexusgpartners.com`;
-
             try {
-                const resp = await fetch('https://api.brevo.com/v3/contacts', {
+                const resp = await fetch('/api/subscribe', {
                     method: 'POST',
-                    headers: {
-                        'accept': 'application/json',
-                        'content-type': 'application/json',
-                        'api-key': BREVO_API_KEY
-                    },
-                    body: JSON.stringify(payload)
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        firstName: firstName,
+                        lastName: lastName,
+                        phone: phoneRaw,
+                        consent: true
+                    })
                 });
 
-                if (resp.ok || resp.status === 201 || resp.status === 204) {
+                const data = await resp.json().catch(() => ({}));
+
+                if (resp.ok && data.success) {
                     msg.className = 'brevo-message success';
-                    msg.textContent = `Thanks ${firstName}! You're signed up — we'll text you shortly.`;
+                    msg.textContent = data.updated
+                        ? `Thanks ${firstName}! Your number is updated.`
+                        : `Thanks ${firstName}! You're signed up — we'll text you shortly.`;
                     document.getElementById('brevo-signup').reset();
                 } else {
-                    const err = await resp.json().catch(() => ({}));
-                    // "Contact already exist" is fine — they were updated
-                    if (err.code === 'duplicate_parameter') {
-                        msg.className = 'brevo-message success';
-                        msg.textContent = `Thanks ${firstName}! Your number is updated.`;
-                    } else {
-                        throw new Error(err.message || 'Signup failed');
-                    }
+                    throw new Error(data.error || 'Signup failed');
                 }
             } catch (err) {
                 msg.className = 'brevo-message error';
                 msg.textContent = 'Something went wrong — please call us at (760) 858-1333.';
-                console.error('Brevo signup error:', err);
+                console.error('Signup error:', err);
             } finally {
                 btn.disabled = false;
                 btn.textContent = 'Get My Quote';
