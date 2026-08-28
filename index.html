@@ -106,6 +106,8 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .brevo-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(6, 182, 212, 0.3); }
+        /* Honeypot field: hidden from real users, filled by bots. Server rejects submissions where it is non-empty. */
+        .hp-field { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
         .brevo-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
         .brevo-message { font-size: 0.9rem; text-align: center; min-height: 1.2em; display: none; }
         .brevo-message.success { display: block; color: #4ade80; }
@@ -246,6 +248,12 @@
                     </label>
                 </div>
 
+                <!-- Honeypot: invisible to humans; must stay empty. Bots that auto-fill it are rejected server-side. -->
+                <div class="hp-field" aria-hidden="true">
+                    <label for="brevo-company">Company</label>
+                    <input type="text" id="brevo-company" name="company" tabindex="-1" autocomplete="off">
+                </div>
+
                 <button type="submit" class="brevo-submit" id="brevo-submit-btn">Get My Quote</button>
                 <div id="brevo-message" class="brevo-message"></div>
             </form>
@@ -355,6 +363,7 @@ document.getElementById('brevo-signup').addEventListener('submit', async functio
     const state = document.getElementById('brevo-state').value;
     const consentCare = document.getElementById('brevo-consent-care').checked;
     const consentMarketing = document.getElementById('brevo-consent-marketing').checked;
+    const company = document.getElementById('brevo-company').value; // honeypot; humans leave this empty
 
     btn.disabled = true;
     btn.textContent = 'Submitting...';
@@ -371,7 +380,8 @@ document.getElementById('brevo-signup').addEventListener('submit', async functio
                 phone: phoneRaw,
                 state: state,
                 consentCare: consentCare,
-                consentMarketing: consentMarketing
+                consentMarketing: consentMarketing,
+                company: company
             })
         });
         const data = await resp.json().catch(() => ({}));
