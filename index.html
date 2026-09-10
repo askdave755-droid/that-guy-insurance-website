@@ -3,231 +3,497 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>David Hughes - Independent Insurance Agent | Commercial Auto, Trucking & Life</title>
-<meta name="description" content="David Hughes, independent insurance agent. Quick quotes for commercial auto, trucking, life, and specialty trades insurance. Compare top carriers and buy on your terms.">
+<title>David Hughes - Independent Insurance Agent</title>
+<meta name="description" content="David Hughes, independent insurance agent. Commercial auto, trucking, life, and specialty trades insurance quotes for small business owners.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root { --navy:#0f2a43; --navy2:#163a5c; --gold:#c9a227; --light:#f7f9fc; --ink:#222; --mut:#5b6b7c; }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:-apple-system,'Segoe UI',Arial,sans-serif; color:var(--ink); line-height:1.6; }
-  a { color:var(--navy); }
-  .wrap { max-width:1000px; margin:0 auto; padding:0 24px; }
-  section { padding:64px 0; }
-  h2 { color:var(--navy); font-size:1.7em; margin-bottom:8px; }
-  .kicker { color:var(--gold); text-transform:uppercase; letter-spacing:2px; font-size:.8em; font-weight:700; }
-  .sub { color:var(--mut); max-width:640px; }
-  header { background:var(--navy); color:#fff; position:sticky; top:0; z-index:50; }
-  .bar { display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1000px; margin:0 auto; flex-wrap:wrap; gap:10px; }
-  .brand { font-size:1.25em; font-weight:700; }
-  .brand span { color:var(--gold); }
-  .bar a.call { color:#fff; text-decoration:none; font-weight:600; }
-  .btn { display:inline-block; background:var(--gold); color:var(--navy); font-weight:700; padding:12px 26px; border-radius:8px; text-decoration:none; border:0; cursor:pointer; font-size:1em; }
-  .btn:hover { filter:brightness(1.08); }
-  .hero { background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%); color:#fff; text-align:center; padding:88px 24px; }
-  .hero h1 { font-size:2.4em; line-height:1.2; }
-  .hero h1 span { color:var(--gold); }
-  .hero p { margin:16px auto 28px; max-width:560px; color:#cdd8e4; font-size:1.1em; }
-  .trust { margin-top:28px; display:flex; gap:24px; justify-content:center; flex-wrap:wrap; color:#cdd8e4; font-size:.9em; }
-  .quote { background:var(--light); }
-  .form-card { background:#fff; border:1px solid #e3e8ef; border-radius:14px; padding:32px; box-shadow:0 8px 30px rgba(15,42,67,.08); }
-  .grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-  .grid .full { grid-column:1 / -1; }
-  label { display:block; font-weight:600; font-size:.9em; margin-bottom:6px; color:var(--navy); }
-  input, select, textarea { width:100%; padding:12px; border:1px solid #cdd6e0; border-radius:8px; font-size:1em; font-family:inherit; }
-  input:focus, select:focus, textarea:focus { outline:2px solid var(--gold); outline-offset:-1px; }
-  .form-note { font-size:.82em; color:var(--mut); margin-top:14px; }
-  .form-ok { display:none; background:#e7f6ec; border:1px solid #9ed7ae; color:#1c6b32; padding:14px; border-radius:8px; margin-top:14px; }
-  @media (max-width:640px){ .grid { grid-template-columns:1fr; } .hero h1 { font-size:1.8em; } }
-  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; margin-top:32px; }
-  .card { background:var(--light); border:1px solid #e3e8ef; border-radius:12px; padding:24px; }
-  .card h3 { color:var(--navy); margin-bottom:8px; font-size:1.05em; }
-  .card .ic { font-size:1.6em; margin-bottom:8px; }
-  .carriers { background:var(--navy); color:#fff; }
-  .carriers h2 { color:#fff; }
-  .carriers .kicker { color:var(--gold); }
-  .carrier-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; margin-top:28px; }
-  .carrier { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); border-radius:10px; padding:20px; text-align:center; font-weight:600; }
-  .t-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:32px; }
-  .t { background:#fff; border:1px solid #e3e8ef; border-radius:12px; padding:24px; }
-  .t p { font-style:italic; color:var(--mut); }
-  .t strong { display:block; margin-top:12px; color:var(--navy); }
-  .sub2 { background:var(--light); }
-  .sub-row { display:flex; gap:12px; max-width:520px; margin-top:20px; flex-wrap:wrap; }
-  .sub-row input { flex:1; min-width:220px; }
-  footer { background:var(--navy); color:#cdd8e4; text-align:center; padding:36px 24px; font-size:.88em; }
-  footer a { color:var(--gold); }
-  footer .lic { margin-top:10px; font-size:.8em; color:#8fa3b8; }
+  :root{
+    --ink:#0f2a43;
+    --ink-soft:#1b3a5c;
+    --paper:#f7f9fc;
+    --paper-dim:#eaeff5;
+    --amber:#c9a227;
+    --route:#1b3a5c;
+    --charcoal:#222222;
+    --line: rgba(15,42,67,0.14);
+    --line-onink: rgba(247,249,252,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    letter-spacing:0.01em;
+    margin:0;
+    color:var(--ink);
+  }
+  a{color:inherit;}
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  :focus-visible{
+    outline:3px solid var(--amber);
+    outline-offset:3px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    padding:26px 0 0;
+  }
+  .topbar .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+  }
+  .brand{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700;
+    font-size:22px;
+    color:var(--ink);
+  }
+  .brand span{color:var(--route);}
+  .topbar-tag{
+    font-size:14px;
+    color:#5c6a78;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:56px 0 40px;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(40px, 6vw, 68px);
+    line-height:0.98;
+    max-width:11ch;
+  }
+  .hero-sub{
+    margin-top:22px;
+    max-width:44ch;
+    font-size:18px;
+    color:#3a4552;
+  }
+  .hero-lines{
+    margin-top:14px;
+    font-size:15px;
+    color:#5c6a78;
+  }
+  .cta-row{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:14px 22px;
+    font-size:15px;
+    font-weight:600;
+    text-decoration:none;
+    border-radius:3px;
+    border:1.5px solid transparent;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn-primary:hover{background:var(--ink-soft);}
+  .btn-ghost{
+    border-color:var(--ink);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{background:rgba(18,32,43,0.06);}
+
+  .route-graphic{
+    width:100%;
+    height:auto;
+  }
+  .route-graphic path.line{
+    fill:none;
+    stroke:var(--route);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-dasharray:600;
+    stroke-dashoffset:600;
+    animation:draw 1.6s ease forwards 0.3s;
+  }
+  .route-graphic circle{fill:var(--amber);}
+  .route-graphic .stop-label{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:12px;
+    fill:#5c6a78;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @media (prefers-reduced-motion: reduce){
+    .route-graphic path.line{animation:none; stroke-dashoffset:0;}
+  }
+
+  /* ---------- Manifest / coverage section ---------- */
+  .manifest{
+    padding:64px 0 40px;
+    border-top:1px solid var(--line);
+  }
+  .manifest h2{
+    font-size:clamp(28px, 3.4vw, 38px);
+    max-width:16ch;
+  }
+  .manifest-intro{
+    max-width:56ch;
+    margin-top:14px;
+    color:#3a4552;
+  }
+  .manifest-list{
+    margin-top:36px;
+    border-top:1px solid var(--line);
+  }
+  .manifest-row{
+    display:grid;
+    grid-template-columns:88px 1fr 1.4fr;
+    gap:28px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .mm{
+    font-variant-numeric:tabular-nums;
+    font-size:14px;
+    color:var(--route);
+    font-weight:600;
+    padding-top:4px;
+  }
+  .manifest-row h3{
+    font-size:24px;
+    font-weight:700;
+  }
+  .manifest-row p{
+    margin:0;
+    color:#3a4552;
+    font-size:15.5px;
+  }
+
+  /* ---------- Carrier strip ---------- */
+  .carriers{
+    padding:22px 0;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--paper-dim);
+  }
+  .carriers .wrap{
+    display:flex;
+    align-items:baseline;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .carriers-label{
+    font-size:13px;
+    color:#6b7684;
+    flex:none;
+  }
+  .carriers-names{
+    font-size:15px;
+    color:var(--ink);
+    font-weight:600;
+  }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{
+    padding:64px 0;
+  }
+  .testimonials h2{
+    font-size:clamp(28px, 3.4vw, 38px);
+    max-width:16ch;
+  }
+  .testi-list{
+    margin-top:36px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:32px;
+  }
+  .testi{
+    border-top:2px solid var(--route);
+    padding-top:16px;
+  }
+  .testi p{
+    margin:0;
+    font-size:15.5px;
+    color:#3a4552;
+  }
+  .testi cite{
+    display:block;
+    margin-top:14px;
+    font-style:normal;
+    font-size:13.5px;
+    color:#6b7684;
+  }
+  @media (max-width:820px){
+    .testi-list{grid-template-columns:1fr; gap:28px;}
+  }
+
+  /* ---------- Process ---------- */
+  .process{
+    padding:64px 0;
+    background:var(--ink);
+    color:var(--paper);
+    margin-top:20px;
+  }
+  .process h2{
+    color:var(--paper);
+    font-size:clamp(28px, 3.4vw, 38px);
+    max-width:18ch;
+  }
+  .steps{
+    margin-top:40px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+  }
+  .step{
+    padding:0 28px 0 0;
+    border-left:1px solid var(--line-onink);
+    padding-left:28px;
+  }
+  .step:first-child{border-left:none; padding-left:0;}
+  .step-num{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-size:44px;
+    font-weight:700;
+    color:var(--amber);
+    line-height:1;
+  }
+  .step h3{
+    color:var(--paper);
+    font-size:19px;
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    margin-top:14px;
+  }
+  .step p{
+    margin-top:8px;
+    font-size:14.5px;
+    color:#c3ccd6;
+  }
+
+  /* ---------- Text updates band ---------- */
+  .sms-band{
+    background:var(--paper-dim);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:26px 0;
+  }
+  .sms-band .wrap{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .sms-dot{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:var(--amber);
+    flex:none;
+  }
+  .sms-band p{
+    margin:0;
+    font-size:15px;
+    color:#3a4552;
+  }
+
+  /* ---------- Quote / footer ---------- */
+  .quote{
+    padding:70px 0 40px;
+  }
+  .quote h2{
+    font-size:clamp(30px, 4vw, 46px);
+    max-width:14ch;
+  }
+  .quote-contact{
+    margin-top:28px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 0 40px;
+    font-size:13.5px;
+    color:#6b7684;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  footer a{text-decoration:underline; text-underline-offset:3px;}
+
+  @media (max-width:820px){
+    .hero .wrap{grid-template-columns:1fr;}
+    .route-graphic{max-width:340px;}
+    .manifest-row{grid-template-columns:56px 1fr; grid-template-areas:"num title" "desc desc";}
+    .manifest-row .mm{grid-area:num;}
+    .manifest-row h3{grid-area:title;}
+    .manifest-row p{grid-area:desc; margin-top:10px;}
+    .steps{grid-template-columns:1fr; row-gap:32px;}
+    .step{border-left:none; padding-left:0; border-top:1px solid var(--line-onink); padding-top:24px;}
+    .step:first-child{border-top:none; padding-top:0;}
+  }
 </style>
-<base target="_blank">
 </head>
 <body>
 
-<header>
-  <div class="bar">
-    <div class="brand">David <span>Hughes</span> Insurance</div>
-    <a class="call" href="tel:+17608581333">&#9742; 760-858-1333</a>
-    <a class="btn" href="#quote">Get a Quote</a>
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand">David Hughes <span>Insurance</span></div>
+    <div class="topbar-tag">Independent agent · small business coverage</div>
   </div>
-</header>
+</div>
 
 <section class="hero">
   <div class="wrap">
-    <h1>Insurance on <span>your terms</span>,<br>not ours.</h1>
-    <p>I'm David Hughes, an independent insurance agent. Get a quick quote for commercial auto, trucking, life, or specialty trades coverage — compare top carriers, and buy when you're ready.</p>
-    <a class="btn" href="#quote">Get My Free Quote</a>
-    <div class="trust">
-      <span>&#10003; Licensed Agent</span>
-      <span>&#10003; Multiple Top Carriers</span>
-      <span>&#10003; Quotes by Email &amp; Text</span>
+    <div>
+      <h1>Coverage that keeps your business moving.</h1>
+      <p class="hero-sub">I help small business owners compare and secure the coverage they need — commercial auto, trucking, life insurance, and specialty trades programs. Request a quote and I'll prepare your options, walk you through them, and deliver everything by email and (with your consent) by text message.</p>
+      <p class="hero-lines">Commercial Auto · Trucking · Life · Specialty Trades</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:+17608581333">Call 760-858-1333</a>
+        <a class="btn btn-ghost" href="mailto:askdave755@gmail.com">Email for a quote</a>
+      </div>
+    </div>
+    <div>
+      <svg class="route-graphic" viewBox="0 0 360 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A route connecting the three coverage lines">
+        <path class="line" d="M30,40 C160,10 200,90 130,120 C60,150 100,220 240,210" />
+        <circle cx="30" cy="40" r="6"></circle>
+        <text class="stop-label" x="44" y="44">Commercial auto</text>
+        <circle cx="130" cy="120" r="6"></circle>
+        <text class="stop-label" x="144" y="124">Specialty trades</text>
+        <circle cx="240" cy="210" r="6"></circle>
+        <text class="stop-label" x="254" y="214">Life</text>
+      </svg>
     </div>
   </div>
 </section>
 
-<section class="quote" id="quote">
+<section class="manifest">
   <div class="wrap">
-    <div class="kicker">Free Quote</div>
-    <h2>Get a Quick Quote</h2>
-    <p class="sub">Fill this out and I'll prepare your options. Prefer to talk? Call <a href="tel:+17608581333">760-858-1333</a>.</p>
-    <div class="form-card" style="margin-top:24px;">
-      <form id="quoteForm">
-        <div class="grid">
-          <div><label for="name">Full Name *</label><input id="name" name="name" required></div>
-          <div><label for="phone">Phone *</label><input id="phone" name="phone" type="tel" required></div>
-          <div><label for="email">Email *</label><input id="email" name="email" type="email" required></div>
-          <div><label for="state">State *</label><input id="state" name="state" maxlength="2" placeholder="CA" required></div>
-          <div><label for="type">Coverage Needed *</label>
-            <select id="type" name="type" required>
-              <option value="">Select...</option>
-              <option>Commercial Auto / Trucking</option>
-              <option>Life Insurance</option>
-              <option>Specialty Trades / GL</option>
-              <option>Not sure - help me decide</option>
-            </select>
-          </div>
-          <div><label for="business">Business / Trade</label><input id="business" name="business" placeholder="e.g. trucking, plumbing"></div>
-          <div class="full"><label for="msg">Anything I should know?</label><textarea id="msg" name="message" rows="3" placeholder="Vehicles, drivers, coverage amounts, timeline..."></textarea></div>
-        </div>
-        <div style="margin-top:20px;"><button class="btn" type="submit">Request My Quote</button></div>
-        <div class="form-note">By submitting, you agree to be contacted by phone or email about your quote. To also receive text messages, just say yes during your quote call.</div>
-        <div class="form-ok" id="formOk">Request received — I'll be in touch shortly with your options.</div>
-      </form>
+    <h2>What I cover</h2>
+    <p class="manifest-intro">Three lines, one point of contact.</p>
+    <div class="manifest-list">
+      <div class="manifest-row">
+        <div class="mm">01</div>
+        <h3>Commercial Auto &amp; Trucking</h3>
+        <p>Auto liability, physical damage, and cargo coverage for business vehicles and fleets.</p>
+      </div>
+      <div class="manifest-row">
+        <div class="mm">02</div>
+        <h3>Specialty Trades</h3>
+        <p>General liability and commercial programs for contractors and trade businesses.</p>
+      </div>
+      <div class="manifest-row">
+        <div class="mm">03</div>
+        <h3>Life Insurance</h3>
+        <p>Term and permanent life options to protect your family and business partners.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section>
+<div class="carriers">
   <div class="wrap">
-    <div class="kicker">The Difference</div>
-    <h2>Why Work With an Independent Agent</h2>
-    <div class="cards">
-      <div class="card"><div class="ic">&#9889;</div><h3>Quick Quotes</h3><p>Get a clear picture of costs in minutes, not days — then finish on your own time.</p></div>
-      <div class="card"><div class="ic">&#128737;</div><h3>Top Carriers</h3><p>I shop multiple A-rated carriers to find the best coverage at the lowest price.</p></div>
-      <div class="card"><div class="ic">&#128222;</div><h3>Real Advice</h3><p>Confused by coverage options? I'll walk you through it and answer every question.</p></div>
-      <div class="card"><div class="ic">&#128241;</div><h3>Text Updates</h3><p>Opt in during your call and get your quote link and reminders by text.</p></div>
+    <div class="carriers-label">Appointed with carriers including</div>
+    <div class="carriers-names">Gerber Life · Assurity · Banner Life · William Penn</div>
+  </div>
+</div>
+
+<section class="process">
+  <div class="wrap">
+    <h2>How a quote comes together</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Tell me about your operation</h3>
+        <p>A short call or email — what you run, what you haul or build, and what's covered today.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>I shop it across carriers</h3>
+        <p>I compare pricing and terms across the carriers I'm appointed with and put together your options.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>You get options, and bind when ready</h3>
+        <p>Everything's delivered by email, and by text if you opt in — no pressure to decide on the call.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section style="background:var(--light);">
+<section class="testimonials">
   <div class="wrap">
-    <div class="kicker">About</div>
-    <h2>About David Hughes</h2>
-    <p class="sub">I'm an independent insurance agent serving small business owners across the U.S. I specialize in commercial auto and trucking, life insurance, and specialty trades coverage. My job is simple: make shopping for insurance easy — on your terms, not ours. Get a quick quote, ask questions when you need to, and buy when you're ready.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="kicker">Insurance 101</div>
-    <h2>Need a Little Insurance 101?</h2>
-    <p class="sub">Insurance can be confusing, but it doesn't have to be. A few tips to get you started:</p>
-    <div class="cards">
-      <div class="card"><h3>How much coverage?</h3><p>Enough to protect your income, assets, and family. For life insurance, a common rule is 10x your annual income — but your situation may call for more.</p></div>
-      <div class="card"><h3>Term vs. permanent life</h3><p>Term is affordable coverage for a set period. Permanent lasts your whole life and builds value. We'll find the right fit for your budget.</p></div>
-      <div class="card"><h3>Commercial auto basics</h3><p>If a vehicle is used for business, a personal policy usually won't cover it. Commercial auto protects the vehicle, the driver, and the cargo.</p></div>
+    <h2>What clients say</h2>
+    <div class="testi-list">
+      <div class="testi">
+        <p>Found him through a quick search — it was easy to get a real idea of costs and reach out with questions before finishing the application.</p>
+        <cite>Karen H., San Bernardino, CA</cite>
+      </div>
+      <div class="testi">
+        <p>Odd hours made it tough to meet with an agent in person. This made it possible to get good, affordable coverage in minutes.</p>
+        <cite>Eric K., Beverly Hills, CA</cite>
+      </div>
+      <div class="testi">
+        <p>As a small business owner I needed to protect my family. Got a disability policy and a life policy quickly, easily, and within budget.</p>
+        <cite>Rachel R., Omaha, NE</cite>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="carriers">
+<div class="sms-band">
   <div class="wrap">
-    <div class="kicker">Insurance Carriers</div>
-    <h2>Some of Our Great Insurance Partners</h2>
-    <div class="carrier-grid">
-      <div class="carrier">Manhattan Life</div>
-      <div class="carrier">Gerber Life</div>
-      <div class="carrier">Assurity</div>
-      <div class="carrier">Kansas City Life</div>
-      <div class="carrier">National Guardian Life</div>
-    </div>
+    <div class="sms-dot"></div>
+    <p><strong>Text Message Updates.</strong> Opt in during your quote call to receive your quote link and appointment reminders by text.</p>
   </div>
-</section>
+</div>
 
-<section>
+<section class="quote">
   <div class="wrap">
-    <div class="kicker">Testimonials</div>
-    <h2>What Clients Say</h2>
-    <div class="t-grid">
-      <div class="t"><p>"It was great to get a quick idea of what the costs were, reach out with questions, and finish the application on my own time."</p><strong>Karen H. - San Bernardino, CA</strong></div>
-      <div class="t"><p>"Working weird hours made it impossible to meet an agent. I got great, affordable coverage within minutes."</p><strong>Eric K. - Beverly Hills, CA</strong></div>
-      <div class="t"><p>"As a small business owner I need to protect my family. I got a life policy quickly, easily, and it fit my tight budget."</p><strong>Rachel R. - Omaha, NE</strong></div>
+    <h2>Request a Quote</h2>
+    <p style="margin-top:14px; color:#3a4552;">Call or email to get started.</p>
+    <div class="quote-contact">
+      <a class="btn btn-primary" href="tel:+17608581333">Call 760-858-1333</a>
+      <a class="btn btn-ghost" href="mailto:askdave755@gmail.com">askdave755@gmail.com</a>
     </div>
-  </div>
-</section>
-
-<section class="sub2">
-  <div class="wrap">
-    <div class="kicker">Free Guide</div>
-    <h2>Subscribe for Insurance Tips</h2>
-    <p class="sub">Get the "Life Insurance Buyer's Guide" free when you subscribe.</p>
-    <form class="sub-row" id="subForm">
-      <input type="email" id="subEmail" placeholder="Your email address" required>
-      <button class="btn" type="submit">Subscribe</button>
-    </form>
-    <div class="form-ok" id="subOk">You're subscribed — the guide is on its way.</div>
   </div>
 </section>
 
 <footer>
-  <div>&copy; 2026 David Hughes Insurance. All rights reserved.</div>
-  <div><a href="/privacy-policy.html">Privacy Policy</a> &middot; <a href="/sms-terms.html">SMS Terms &amp; Conditions</a></div>
-  <div>Contact: <a href="mailto:askdave755@gmail.com">askdave755@gmail.com</a> &middot; <a href="tel:+17608581333">760-858-1333</a></div>
-  <div class="lic">Licensed insurance agent. CA License #__________ (add your license number here before publishing.)</div>
+  <div class="wrap">
+    <div>© 2026 David Hughes. All rights reserved.</div>
+    <div><a href="/privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="/sms-terms.html">SMS Terms &amp; Conditions</a></div>
+  </div>
 </footer>
-
-<script>
-  var FORM_ENDPOINT = "";
-  function send(formId, okId, getData) {
-    var form = document.getElementById(formId);
-    var ok = document.getElementById(okId);
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (FORM_ENDPOINT) {
-        fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(getData())
-        }).catch(function(){});
-      }
-      ok.style.display = 'block';
-      form.reset();
-    });
-  }
-  send('quoteForm', 'formOk', function () {
-    return {
-      name: document.getElementById('name').value,
-      phone: document.getElementById('phone').value,
-      email: document.getElementById('email').value,
-      state: document.getElementById('state').value.toUpperCase(),
-      type: document.getElementById('type').value,
-      business: document.getElementById('business').value,
-      message: document.getElementById('msg').value,
-      source: 'davidhughes.vercel.app'
-    };
-  });
-  send('subForm', 'subOk', function () {
-    return { email: document.getElementById('subEmail').value, source: 'newsletter' };
-  });
-</script>
 
 </body>
 </html>
