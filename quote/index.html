@@ -1,25 +1,155 @@
-Commercial Insurance Quote
-David Hughes Insurance Most quotes returned within one business day.
-1Your info
-Fields marked ● are required. ← Back to home
-Full name ●
-Company name ●
-City ●
-State ●
-Select…
-ZIP ●
-Phone ●
-Email ●
-Gender ●
-Select…MaleFemale
-2What type of business?
-(select all that apply)
-Don't see yours? Select "Other" and describe it in the notes below.
-Other / details
-3What coverage do you need?
-4Price comparison? Upload your current policy.
-A copy of your current coverage (declaration page is fine) lets us match coverage — not just price. Photo or PDF works.
-Tap to upload declaration page / current policy
-Anything else we should know?
-Get my quote →
-By submitting you agree to be contacted about your quote. We never sell your info.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Insurance Quote · David Hughes Insurance</title>
+<style>
+:root{--ink:#111;--mut:#666;--line:#ddd;--accent:#1a3a5c;--bg:#fafafa}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;padding:24px 16px}
+.wrap{max-width:640px;margin:0 auto}
+header{text-align:center;margin-bottom:24px}
+header h1{font-size:22px;font-weight:700}
+header p{color:var(--mut);font-size:14px;margin-top:6px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:16px}
+.card h2{font-size:15px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.step{color:#fff;background:var(--accent);border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+.hint{font-size:12px;color:var(--mut);margin-bottom:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:520px){.grid2{grid-template-columns:1fr}}
+label{display:block;font-size:12px;font-weight:600;margin-bottom:4px}
+label .req{color:#c0392b}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:15px;background:#fff}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-color:var(--accent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:13px;cursor:pointer;user-select:none;background:#fff;transition:all .15s}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.upload{border:2px dashed var(--line);border-radius:10px;padding:18px;text-align:center;font-size:13px;color:var(--mut);cursor:pointer}
+.upload:hover{border-color:var(--accent);color:var(--accent)}
+.submit{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer}
+.submit:hover{opacity:.92}
+.note{font-size:12px;color:var(--mut);text-align:center;margin-top:10px}
+.ok{display:none;text-align:center;padding:32px 16px}
+.ok h2{font-size:19px;margin-bottom:8px}
+.err{font-size:12px;color:#c0392b;margin-top:4px;display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1 id="pageTitle">Commercial Insurance Quote</h1>
+    <p>David Hughes Insurance<br>Most quotes returned within one business day.</p>
+  </header>
+
+  <form id="quoteForm" novalidate>
+    <!-- STEP 1 · CONTACT (red-dot required fields, Russell style) -->
+    <div class="card">
+      <h2><span class="step">1</span>Your info</h2>
+      <div class="hint">Fields marked <span style="color:#c0392b">●</span> are required. <a href="/" style="color:var(--accent)">← Back to home</a></div>
+      <div class="grid2">
+        <div><label>Full name <span class="req">●</span></label><input name="name" id="f-name" placeholder="John Smith"><div class="err" id="e-name">Required</div></div>
+        <div><label>Company name <span class="req">●</span></label><input name="company" id="f-company" placeholder="Smith Landscaping LLC"><div class="err" id="e-company">Required</div></div>
+        <div><label>City <span class="req">●</span></label><input name="city" id="f-city"><div class="err" id="e-city">Required</div></div>
+        <div><label>State <span class="req">●</span></label>
+          <select name="state" id="f-state"><option value="">Select…</option></select><div class="err" id="e-state">Required</div></div>
+        <div><label>ZIP <span class="req">●</span></label><input name="zip" id="f-zip" inputmode="numeric" maxlength="10"><div class="err" id="e-zip">Required</div></div>
+        <div><label>Phone <span class="req">●</span></label><input name="phone" id="f-phone" type="tel" placeholder="(555) 555-5555"><div class="err" id="e-phone">Required</div></div>
+        <div><label>Email <span class="req">●</span></label><input name="email" id="f-email" type="email"><div class="err" id="e-email">Valid email required</div></div>
+        <div><label>Gender <span class="req">●</span></label>
+          <select name="gender" id="f-gender"><option value="">Select…</option><option>Male</option><option>Female</option></select><div class="err" id="e-gender">Required</div></div>
+      </div>
+    </div>
+
+    <!-- STEP 2 · BUSINESS CLASS (Russell's long appetite list, chip multi-select) -->
+    <div class="card">
+      <h2><span class="step">2</span>What type of business? <span style="font-weight:400;font-size:12px;color:var(--mut)">(select all that apply)</span></h2>
+      <div class="hint">Don't see yours? Select "Other" and describe it in the notes below.</div>
+      <div class="chips" id="bizChips"></div>
+      <div style="margin-top:12px"><label>Other / details</label><input name="biz_other" id="f-bizother" placeholder="e.g. Mobile dog grooming"></div>
+    </div>
+
+    <!-- STEP 3 · COVERAGE TYPES -->
+    <div class="card">
+      <h2><span class="step">3</span>What coverage do you need?</h2>
+      <div class="chips" id="covChips"></div>
+    </div>
+
+    <!-- STEP 4 · CURRENT POLICY (the x-date harvest) -->
+    <div class="card">
+      <h2><span class="step">4</span>Price comparison? Upload your current policy.</h2>
+      <div class="hint">A copy of your current coverage (declaration page is fine) lets us match coverage — not just price. Photo or PDF works.</div>
+      <div class="upload" id="drop" onclick="document.getElementById('f-file').click()">
+        <div id="dropLabel">Tap to upload declaration page / current policy</div>
+        <input type="file" id="f-file" accept="image/*,.pdf" style="display:none" multiple>
+      </div>
+      <div style="margin-top:12px"><label>Anything else we should know?</label>
+      <textarea name="notes" id="f-notes" rows="3" placeholder="Current premium, renewal date, claims, questions…"></textarea></div>
+    </div>
+
+    <button type="submit" class="submit">Get my quote →</button>
+    <p class="note">By submitting you agree to be contacted about your quote. We never sell your info.</p>
+  </form>
+
+  <div class="ok card" id="done">
+    <h2>✓ Got it — you're in the queue.</h2>
+    <p style="color:var(--mut);font-size:14px">David will call you within one business day.<br>Need it faster? Call <b>(313) 765-1915</b>.</p>
+  </div>
+</div>
+
+<script>
+// ── Line preselect from ?line=commercial|life|personal ──
+(function(){
+  const p=new URLSearchParams(location.search).get('line');
+  const t={commercial:'Commercial Insurance Quote',life:'Life & Final Expense Quote',personal:'Home & Auto Quote'};
+  if(p&&t[p]){document.getElementById('pageTitle').textContent=t[p];
+    window.addEventListener('load',()=>{
+      const map={commercial:['Business Owners Policy (BOP)','General Liability','Commercial Auto','Workers Comp'],
+                 life:['Term Life','Whole Life','Final Expense'],
+                 personal:['Home Insurance','Personal Auto','Umbrella']};
+      document.querySelectorAll('#covChips .chip').forEach(c=>{
+        if((map[p]||[]).some(x=>c.dataset.v.toLowerCase().includes(x.split(' ')[0].toLowerCase())))c.classList.add('on');});
+      if(p==='life'){const o=document.getElementById('f-bizother');if(o)o.placeholder='Occupation (helps us match the right carrier)';}
+    });}
+})();
+// ── Business classes: Russell's appetite list + trucking for you ──
+const BIZ=["Air conditioning","Alarm installers","Amusement rides","Apartment complexes","Bar / tavern","Beauty shop","Breakfast / diner","Carpentry","Catering","Childcare","Clothing store","Condo / townhouse","Counseling center","Debris removal","Grocery store","Home health care","Church / ministry","Laundromat","Landscaping","Plumbing","Restaurant","Retail store","Salon / barbershop","Trucking / fleet","Warehouse","Other"];
+const COV=["Business Owners Policy (BOP)","General Liability","Commercial Auto","Workers Comp","Builders Risk","Professional Liability","Umbrella","Bonds","Term Life","Whole Life","Final Expense","Home Insurance","Personal Auto"];
+const chips=(list,el)=>{el.innerHTML=list.map(c=>'<div class="chip" data-v="'+c+'">'+c+'</div>').join('');
+  el.querySelectorAll('.chip').forEach(ch=>ch.onclick=()=>ch.classList.toggle('on'));};
+chips(BIZ,document.getElementById('bizChips'));
+chips(COV,document.getElementById('covChips'));
+const st=document.getElementById('f-state');
+["AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"].forEach(s=>{const o=document.createElement('option');o.textContent=s;st.appendChild(o);});
+
+const picked=el=>[...el.querySelectorAll('.chip.on')].map(c=>c.dataset.v);
+document.getElementById('f-file').onchange=e=>{
+  const n=e.target.files.length;
+  document.getElementById('dropLabel').textContent=n?("✓ "+n+" file(s) attached — "+[...e.target.files].map(f=>f.name).join(', ')):"Tap to upload declaration page / current policy";};
+
+// ── Submit: validate → POST to your InsureFlow endpoint ──
+const ENDPOINT="https://insureflow-ai2-production.up.railway.app/api/leads"; // swap if your route differs
+const req=["name","company","city","state","zip","phone","email","gender"];
+document.getElementById('quoteForm').onsubmit=async e=>{
+  e.preventDefault();
+  let ok=true;
+  req.forEach(f=>{const v=document.getElementById('f-'+f).value.trim();
+    const bad=f==="email"?!/^\S+@\S+\.\S+$/.test(v):!v;
+    document.getElementById('e-'+f).style.display=bad?"block":"none";
+    if(bad)ok=false;});
+  if(!ok)return;
+  const payload={name:f('name'),company:f('company'),city:f('city'),state:f('state'),zip:f('zip'),
+    phone:f('phone'),email:f('email'),gender:f('gender'),vertical:'commercial_auto',
+    businessClasses:picked(document.getElementById('bizChips')),
+    coverages:picked(document.getElementById('covChips')),
+    businessOther:f('bizother'),notes:f('notes'),
+    hasCurrentPolicy:document.getElementById('f-file').files.length>0,
+    source:'website_quote_form'};
+  try{await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(_){}
+  document.getElementById('quoteForm').style.display='none';
+  document.getElementById('done').style.display='block';
+  window.scrollTo(0,0);};
+function f(id){return document.getElementById('f-'+id).value.trim();}
+</script>
+</body>
+</html>
