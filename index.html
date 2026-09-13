@@ -4,61 +4,161 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>David Hughes Insurance · Nexus Growth Partners LLC</title>
+<meta name="description" content="Commercial, life, home & auto insurance, and annuities. Quotes in one business day, from a licensed agent who answers the phone.">
 <style>
-:root{--ink:#111;--mut:#555;--line:#e2e2e2;--accent:#1a3a5c;--bg:#fafafa}
+:root{--navy:#0f2540;--navy2:#1a3a5c;--gold:#d9a441;--bg:#f6f7f9;--ink:#16212e;--mut:#5b6b7c;--card:#ffffff;--line:#e4e8ee;--radius:16px}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
-a{color:var(--accent)}
-.hero{max-width:720px;margin:0 auto;padding:52px 20px 28px;text-align:center}
-.hero h1{font-size:28px;font-weight:800;letter-spacing:-.5px}
-.hero .sub{color:var(--mut);font-size:15px;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto}
-.btnrow{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
-.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:13px 22px;border-radius:10px;font-weight:700;font-size:15px}
-.cta:hover{opacity:.92}
-.cta.ghost{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
-.wrap{max-width:960px;margin:0 auto;padding:0 16px}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:30px auto}
-.col{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px}
-.col h3{font-size:15px;font-weight:700;margin-bottom:8px}
-.col p{font-size:13.5px;color:var(--mut)}
-.num{font-size:13px;font-weight:800;color:var(--accent);display:block;margin-bottom:6px}
-.strip{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px 16px;text-align:center;font-size:14px}
-footer{text-align:center;color:var(--mut);font-size:12px;padding:24px 16px 40px;line-height:2}
-footer a{margin:0 6px}
+a{text-decoration:none;color:var(--navy2)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 60%,#24507d 100%);color:#fff;padding:64px 18px 84px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(217,164,65,.28),transparent 70%)}
+.hero .wrap{position:relative;z-index:1;text-align:center;max-width:760px}
+.badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(217,164,65,.5);border-radius:20px;padding:6px 14px;margin-bottom:18px}
+.hero h1{font-size:clamp(30px,6vw,46px);font-weight:800;line-height:1.12;letter-spacing:-1px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{margin:16px auto 0;max-width:540px;color:#c9d6e4;font-size:16px}
+.trust{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+.trust span{font-size:12.5px;color:#dbe6f2;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:6px 13px}
+.btnrow{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+.btn{display:inline-block;padding:14px 26px;border-radius:12px;font-weight:700;font-size:15.5px;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#1a1205;box-shadow:0 6px 18px rgba(217,164,65,.35)}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.hero-video{margin:36px auto 0;max-width:300px}
+.hv-label{font-size:12.5px;color:#c9d6e4;margin-bottom:10px;letter-spacing:.3px}
+.hv-frame{position:relative;padding-top:177.78%;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.25);box-shadow:0 18px 44px rgba(0,0,0,.45)}
+
+/* ── Sections ── */
+section{padding:56px 0}
+.sec-title{text-align:center;font-size:clamp(22px,4vw,30px);font-weight:800;letter-spacing:-.5px}
+.sec-sub{text-align:center;color:var(--mut);font-size:15px;margin:10px auto 34px;max-width:520px}
+
+/* ── Service cards ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px;display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(15,37,64,.1)}
+.card .ico{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--navy2),#2a5a8a);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+.card h3{font-size:16.5px;font-weight:700;margin-bottom:8px}
+.card p{font-size:13.5px;color:var(--mut);flex:1}
+.card a{margin-top:14px;font-weight:700;font-size:14px;color:var(--navy2)}
+.card a::after{content:" →"}
+
+/* ── How it works ── */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:24px;position:relative}
+.step::before{counter-increment:s;content:counter(s);position:absolute;top:-14px;left:20px;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#1a1205;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.step h3{font-size:15.5px;font-weight:700;margin:6px 0 8px}
+.step p{font-size:13.5px;color:var(--mut)}
+
+/* ── Occupations strip ── */
+.strip{background:var(--navy);color:#fff;padding:44px 0}
+.strip .wrap{text-align:center}
+.strip h2{font-size:clamp(20px,3.5vw,26px);font-weight:800}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:20px;max-width:820px;margin-left:auto;margin-right:auto}
+.chips span{font-size:12.5px;color:#c9d6e4;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:5px 12px}
+
+/* ── Compare banner ── */
+.compare{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:var(--radius);color:#fff;padding:34px 28px;text-align:center;max-width:820px;margin:0 auto}
+.compare h2{font-size:clamp(19px,3.5vw,25px);font-weight:800}
+.compare p{color:#c9d6e4;font-size:14.5px;margin:10px auto 20px;max-width:520px}
+.btn-gold-sm{background:var(--gold);color:#1a1205;padding:12px 22px;border-radius:10px;font-weight:700;display:inline-block}
+
+/* ── Footer ── */
+footer{background:#0b1a2e;color:#8ba0b5;text-align:center;font-size:12.5px;padding:34px 18px 110px;line-height:2}
+footer a{color:#b9c9da;margin:0 6px}
+footer .fbold{color:#dce7f2;font-size:13.5px}
+
+/* ── Mobile sticky bar ── */
+.sticky{position:fixed;left:0;right:0;bottom:0;display:flex;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,.2)}
+.sticky a{flex:1;text-align:center;padding:15px 8px;font-weight:700;font-size:14.5px}
+.sticky .s-call{background:#fff;color:var(--navy2);border-top:1px solid var(--line)}
+.sticky .s-quote{background:var(--gold);color:#1a1205}
+@media(min-width:720px){.sticky{display:none}footer{padding-bottom:40px}}
 </style>
+<base target="_blank">
 </head>
 <body>
-  <div class="hero">
-    <h1>David Hughes Insurance</h1>
-    <p class="sub">Commercial, life, home &amp; auto, and annuities — quoted fast, explained plainly, and serviced by a real person who answers the phone.</p>
-    <div class="btnrow">
-      <a class="cta" href="/quote?line=commercial">Commercial quote →</a>
-      <a class="cta" href="/quote?line=life">Life &amp; final expense →</a>
-      <a class="cta" href="/quote?line=personal">Home &amp; auto →</a>
-    </div>
-    <div class="btnrow">
-      <a class="cta ghost" href="tel:+13137651915">Call (313) 765-1915</a>
-    </div>
-  </div>
 
+<header class="hero">
   <div class="wrap">
-    <div class="cols">
-      <div class="col"><span class="num">01</span><h3>Commercial insurance</h3><p>Business owners policies, general liability, commercial auto, workers comp, builders risk — from childcare centers to trucking fleets. Most quotes back within one business day.</p></div>
-      <div class="col"><span class="num">02</span><h3>Life &amp; disability</h3><p>Term, whole, and final expense life insurance, plus high-limit disability coverage for professionals and business owners.</p></div>
-      <div class="col"><span class="num">03</span><h3>Home &amp; auto</h3><p>Personal lines bundled and audited — most households save by putting home and auto with one carrier. We check it in one call.</p></div>
-      <div class="col"><span class="num">04</span><h3>Annuities</h3><p>Fixed, indexed, and immediate annuities for retirement income. In-house, no handoff to a stranger.</p></div>
+    <div class="badge">Licensed Agent · Multi-State</div>
+    <h1>Insurance that fits the way <em>you actually work</em>.</h1>
+    <p>Commercial, life, home &amp; auto, and annuities — quoted fast, explained in plain English, and serviced by an agent who answers the phone.</p>
+    <div class="trust"><span>⚡ Same-day quotes</span><span>🛡️ Top carriers</span><span>📄 Upload your policy, we beat it or tell you to stay</span></div>
+    <div class="btnrow">
+      <a class="btn btn-gold" href="/quote?line=commercial">Get a quote →</a>
+      <a class="btn btn-ghost" href="tel:+13137651915">Call (313) 765-1915</a>
+    </div>
+    <div class="hero-video">
+      <div class="hv-label">▶ Watch: insurance explained in 10 seconds</div>
+      <div class="hv-frame">
+        <iframe src="https://www.youtube.com/embed/oZ5XvXy6Wp8?rel=0&modestbranding=1"
+          title="David Hughes Insurance — intro video"
+          loading="lazy"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
     </div>
   </div>
+</header>
 
-  <div class="strip">
-    <b>Price comparison?</b> Upload your current policy with your quote — we match your coverage, not just your price.
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">What we cover</h2>
+    <p class="sec-sub">One agent for your business, your family, and your retirement — no handoffs to strangers.</p>
+    <div class="grid">
+      <div class="card"><div class="ico">🚛</div><h3>Commercial Insurance</h3><p>Business owners policies, liability, commercial auto, workers comp, builders risk — from daycares to trucking fleets.</p><a href="/quote?line=commercial">Start a commercial quote</a></div>
+      <div class="card"><div class="ico">🛡️</div><h3>Life &amp; Final Expense</h3><p>Term, whole, and final expense coverage from top carriers. Get instant rates through our live quote portal.</p><a href="https://insuremenowdirect.com/agent/dawudrafael/" target="_blank" rel="noopener">Get instant life rates</a></div>
+      <div class="card"><div class="ico">🏠</div><h3>Home &amp; Auto</h3><p>Bundle and audit — most households save 15–20% by putting home and auto with one carrier. We check it in one call.</p><a href="/quote?line=personal">Audit my home &amp; auto</a></div>
+      <div class="card"><div class="ico">📈</div><h3>Annuities</h3><p>Fixed, indexed, and immediate annuities for retirement income — in-house, no referral to a call center.</p><a href="tel:+13137651915">Talk to David</a></div>
+    </div>
   </div>
+</section>
 
-  <footer>
-    Nexus Growth Partners LLC · dba David Hughes Insurance · Licensed insurance agent<br>
-    📞 <a href="tel:+13137651915">(313) 765-1915</a> &nbsp;·&nbsp; ✉️ askdave755@gmail.com<br>
-    <a href="/privacy-policy.html">Privacy Policy</a> · <a href="/sms-terms.html">SMS Terms</a><br>
-    Products and availability vary by state. Quotes subject to underwriting.
-  </footer>
+<section style="padding-top:0">
+  <div class="wrap">
+    <h2 class="sec-title">How it works</h2>
+    <p class="sec-sub">Three steps. No phone tag, no 40-page applications to start.</p>
+    <div class="steps">
+      <div class="step"><h3>Tell us what you need</h3><p>Two-minute form, one call, or upload your current policy. Pick whichever is easiest.</p></div>
+      <div class="step"><h3>We shop the carriers</h3><p>Your quote comes back compared against multiple carriers — with the coverage line-items explained, not hidden.</p></div>
+      <div class="step"><h3>Bind and get serviced</h3><p>Bound today, and your renewal gets re-shopped 45 days out so you never overpay twice.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="strip">
+  <div class="wrap">
+    <h2>We write the businesses other agents won't touch</h2>
+    <div class="chips"><span>Trucking &amp; fleets</span><span>Childcare &amp; daycare</span><span>Contractors</span><span>Restaurants &amp; bars</span><span>Debris removal</span><span>Home health</span><span>Churches</span><span>Laundromats</span><span>Beauty &amp; barber</span><span>Grocery &amp; retail</span><span>Apartments &amp; condos</span><span>Counseling centers</span><span>Alarm installers</span><span>Catering</span><span>Auto repair</span><span>Warehouse</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="compare">
+      <h2>Already insured? Get the second-opinion quote.</h2>
+      <p>Upload your current policy — we'll match your coverage line by line against ours. If yours is genuinely better, we'll tell you to stay put. Fair is fair.</p>
+      <a class="btn-gold-sm" href="/quote">Compare my policy →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fbold">Nexus Growth Partners LLC · dba David Hughes Insurance · Licensed Insurance Agent</div>
+  📞 <a href="tel:+13137651915">(313) 765-1915</a> · ✉️ <a href="mailto:dave@nexusgpartners.net">dave@nexusgpartners.net</a><br>
+  <a href="/privacy-policy.html">Privacy Policy</a> · <a href="/sms-terms.html">SMS Terms</a><br>
+  Products and availability vary by state. Quotes subject to underwriting.
+</footer>
+
+<div class="sticky">
+  <a class="s-call" href="tel:+13137651915">📞 Call now</a>
+  <a class="s-quote" href="/quote">Get my quote →</a>
+</div>
+
 </body>
 </html>
