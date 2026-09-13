@@ -13,9 +13,11 @@ a{text-decoration:none;color:var(--navy2)}
 .wrap{max-width:1040px;margin:0 auto;padding:0 18px}
 
 /* ── Hero ── */
-.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 60%,#24507d 100%);color:#fff;padding:64px 18px 84px;position:relative;overflow:hidden}
-.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(217,164,65,.28),transparent 70%)}
-.hero .wrap{position:relative;z-index:1;text-align:center;max-width:760px}
+.hero{background:var(--navy);color:#fff;padding:64px 18px 84px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(160deg,rgba(15,37,64,.78) 0%,rgba(26,58,92,.68) 60%,rgba(36,80,125,.58) 100%)}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(217,164,65,.28),transparent 70%);z-index:1}
+.hero .wrap{position:relative;z-index:2;text-align:center;max-width:760px}
 .badge{display:inline-block;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(217,164,65,.5);border-radius:20px;padding:6px 14px;margin-bottom:18px}
 .hero h1{font-size:clamp(30px,6vw,46px);font-weight:800;line-height:1.12;letter-spacing:-1px}
 .hero h1 em{font-style:normal;color:var(--gold)}
@@ -27,8 +29,8 @@ a{text-decoration:none;color:var(--navy2)}
 .btn:hover{transform:translateY(-2px)}
 .btn-gold{background:var(--gold);color:#1a1205;box-shadow:0 6px 18px rgba(217,164,65,.35)}
 .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
-/* Video embed styles kept for later — when the Nexus YouTube channel is live,
-   drop the hero-video block back in and these classes just work.
+/* Video is now the hero wallpaper (.hero-bg above). To also show it as a
+   phone card later (e.g. on a How-it-works section), reuse:
 .hero-video{margin:36px auto 0;max-width:300px}
 .hv-label{font-size:12.5px;color:#c9d6e4;margin-bottom:10px;letter-spacing:.3px}
 .hv-frame{position:relative;padding-top:177.78%;border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.25);box-shadow:0 18px 44px rgba(0,0,0,.45)}
@@ -82,10 +84,14 @@ footer .fbold{color:#dce7f2;font-size:13.5px}
 @media(min-width:720px){.sticky{display:none}footer{padding-bottom:40px}}
 </style>
 <base target="_blank">
+<base target="_blank">
 </head>
 <body>
 
 <header class="hero">
+  <video class="hero-bg" autoplay muted loop playsinline preload="metadata" poster="promo-poster.jpg" aria-hidden="true">
+    <source src="promo.mp4" type="video/mp4">
+  </video>
   <div class="wrap">
     <div class="badge">Licensed Agent · Multi-State</div>
     <h1>Insurance that fits the way <em>you actually work</em>.</h1>
