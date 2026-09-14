@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nexusgpartners.net/sitemap.xml
+Sitemap: https://www.nexusgpartners.net/sitemap.xml
