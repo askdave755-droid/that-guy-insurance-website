@@ -151,5 +151,17 @@ document.getElementById('quoteForm').onsubmit=async e=>{
   window.scrollTo(0,0);};
 function f(id){return document.getElementById('f-'+id).value.trim();}
 </script>
+
+<!-- Nexus chat quote widget (InsureFlow) — smart embed, grows when opened, sits above mobile sticky bar -->
+<style>#nxq-f{position:fixed;right:0;bottom:64px;width:96px;height:96px;border:none;z-index:9998}
+@media(min-width:720px){#nxq-f{bottom:0}}</style>
+<iframe src="https://insureflow-ai2-production.up.railway.app/nexus-chat.html" id="nxq-f" title="Chat quote" loading="lazy"></iframe>
+<script>
+window.addEventListener('message',function(e){
+  var f=document.getElementById('nxq-f'); if(!f) return;
+  if(e.data==='nxq-open'){ f.style.bottom='0'; f.style.width='100vw'; f.style.maxWidth='440px'; f.style.height='100dvh'; }
+  if(e.data==='nxq-close'){ f.style.bottom=''; f.style.width='96px'; f.style.height='96px'; f.style.maxWidth=''; }
+});
+</script>
 </body>
 </html>
