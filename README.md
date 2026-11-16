@@ -43,7 +43,6 @@ Then open http://localhost:8080/ . The form will use the email-draft fallback, b
 
 ## Placeholders Dave still needs to fill in
 
-- Confirm the office address on the site and the legal pages: 3125 N 37th St, Phoenix, AZ 85018.
 - Confirm the SMS program still matches 10DLC: web-form checkbox plus verbal phone opt-in, Twilio as the SMS platform, and "message frequency varies" (the old page said 1–2 messages per quote).
 - The contact phone on the old legal pages was (760) 858-1333 and the email was askdave755@gmail.com. Both legal pages now use (220) 208-0593 and dave@nexusgpartners.net.
 - `[Case study coming soon]` on the homepage. Add a real shop, the offer, and the booked jobs. Do not invent numbers.
