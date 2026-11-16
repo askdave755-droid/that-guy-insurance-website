@@ -1,95 +1,148 @@
-// Vercel serverless function: POST /api/subscribe
-// 1) Adds contact to Brevo "Website Quote Leads" list
-// 2) Fires a lead into InsureFlowAI (triggers Vapi AI call within ~60s)
-// Env vars (Vercel): BREVO_API_KEY, BREVO_LIST_ID, INSUREFLOW_URL
+// POST /api/subscribe
+// Saves a Nexus G Partners HVAC ad-audit request to Brevo.
+//
+// This file is a Vercel serverless function. Railway serves the repo as static
+// files (railway-hikari) and does not execute it — /api/subscribe is 404 there.
+// The audit form falls back to a mailto draft for dave@nexusgpartners.net.
+//
+// Env (Vercel): BREVO_API_KEY, BREVO_LIST_ID
+// The phone number is written to Brevo's SMS attribute only when the person
+// checked the SMS consent box. This function does not call InsureFlow and does
+// not place a phone call.
+
+var JOBS = ["AC repair", "System installs", "Maintenance plans"];
+var ADS = ["yes", "no", "not sure"];
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-    if (req.method === 'OPTIONS') return res.status(200).end();
-    if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method === "OPTIONS") return res.status(200).end();
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
-    const apiKey = process.env.BREVO_API_KEY;
-    const listId = parseInt(process.env.BREVO_LIST_ID || '5', 10);
-    const insureflowUrl = process.env.INSUREFLOW_URL || 'https://insureflow-ai2-production.up.railway.app';
+  var apiKey = process.env.BREVO_API_KEY;
+  var listId = parseInt(process.env.BREVO_LIST_ID || "5", 10);
+  if (!listId) listId = 5;
+  if (!apiKey) return res.status(500).json({ error: "Server not configured" });
 
-    if (!apiKey) return res.status(500).json({ error: 'Server not configured' });
-
-    try {
-        const { firstName, lastName, phone, state, consent } = req.body || {};
-
-        if (!firstName || !phone || !state || consent !== true) {
-            return res.status(400).json({ error: 'First name, phone, state, and consent are required' });
-        }
-
-        // E.164 normalize (US default)
-        let digits = String(phone).replace(/\D/g, '');
-        if (digits.length === 10) digits = '1' + digits;
-        if (digits.length < 11 || digits.length > 15) {
-            return res.status(400).json({ error: 'Invalid phone number' });
-        }
-        const sms = '+' + digits;
-        const fullName = `${firstName} ${lastName || ''}`.trim();
-        const stateUp = String(state).toUpperCase().slice(0, 2);
-
-        // --- Step 1: Brevo contact ---
-        const brevoPayload = {
-            attributes: {
-                FIRSTNAME: String(firstName).slice(0, 100),
-                LASTNAME: String(lastName || '').slice(0, 100),
-                SMS: sms,
-                STATE: stateUp,
-                OPT_IN_SOURCE: 'website_form',
-                OPT_IN_DATE: new Date().toISOString()
-            },
-            listIds: [listId],
-            updateEnabled: true,
-            email: `sms_${digits}@sms.nexusgpartners.com`
-        };
-
-        const brevoResp = await fetch('https://api.brevo.com/v3/contacts', {
-            method: 'POST',
-            headers: {
-                'accept': 'application/json',
-                'content-type': 'application/json',
-                'api-key': apiKey
-            },
-            body: JSON.stringify(brevoPayload)
-        });
-
-        const brevoErr = await brevoResp.json().catch(() => ({}));
-        const brevoOk = brevoResp.ok || brevoResp.status === 201
-            || brevoResp.status === 204 || brevoErr.code === 'duplicate_parameter';
-
-        if (!brevoOk) {
-            console.error('Brevo error:', brevoErr);
-            return res.status(502).json({ error: 'Brevo rejected the signup' });
-        }
-
-        // --- Step 2: Fire lead into InsureFlowAI (triggers Vapi call) ---
-        // Fire-and-forget: never block or fail the signup if InsureFlow is down.
-        // InsureFlow /api/leads requires: name, phone, state (2-letter).
-        const leadPayload = {
-            name: fullName,
-            phone: sms,
-            state: stateUp,
-            insuranceType: 'commercial_auto',
-            source: 'nexusgpartners_website'
-        };
-
-        fetch(`${insureflowUrl}/api/leads`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(leadPayload)
-        })
-        .then(r => console.log('InsureFlow lead fired:', r.status))
-        .catch(e => console.error('InsureFlow fire failed:', e.message));
-
-        return res.status(200).json({ success: true, updated: brevoErr.code === 'duplicate_parameter' });
-    } catch (e) {
-        console.error('Subscribe error:', e);
-        return res.status(500).json({ error: 'Internal error' });
+  try {
+    var body = req.body || {};
+    if (typeof body === "string") {
+      try { body = JSON.parse(body); } catch (err) { body = {}; }
     }
+
+    if (body.contact_fax || body.website) {
+      return res.status(200).json({ success: true });
+    }
+
+    var firstName = clean(body.firstName, 80);
+    var lastName = clean(body.lastName, 80);
+    var shop = clean(body.shop, 120);
+    var city = clean(body.city, 80);
+    var email = clean(body.email, 120);
+    var state = clean(body.state, 2).toUpperCase();
+    var notes = clean(body.notes, 2000);
+    var consent = body.consent === true || body.consent === "true" || body.consent === "yes";
+    var sms = normalizeSms(body.phone);
+    var jobs = []
+      .concat(body.jobs || [])
+      .map(function (job) { return String(job); })
+      .filter(function (job) { return JOBS.indexOf(job) !== -1; });
+    var adsNow = ADS.indexOf(body.adsNow) !== -1 ? body.adsNow : "";
+
+    if (!firstName || !lastName || !shop || !city || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return res.status(400).json({ error: "Name, shop, city, and a valid email are required." });
+    }
+    if (!/^[A-Z]{2}$/.test(state)) {
+      return res.status(400).json({ error: "Choose a state." });
+    }
+    if (!sms) {
+      return res.status(400).json({ error: "Enter a valid mobile number." });
+    }
+
+    var stamp = new Date().toISOString();
+    var source = consent ? "website_ad_audit_sms" : "website_ad_audit";
+    var detail = [
+      "Shop: " + shop,
+      "City: " + city,
+      "Callback: " + sms,
+      "Jobs: " + (jobs.join(", ") || "unspecified"),
+      "Ads now: " + (adsNow || "unspecified"),
+      "SMS consent: " + (consent ? "yes" : "no"),
+      "Notes: " + (notes || "none")
+    ].join(" | ").slice(0, 2000);
+
+    var rich = {
+      FIRSTNAME: firstName,
+      LASTNAME: lastName,
+      STATE: state,
+      OPT_IN_SOURCE: source,
+      OPT_IN_DATE: stamp,
+      COMPANY: shop,
+      CITY: city,
+      PHONE: sms,
+      JOBS: jobs.join(", "),
+      ADS_NOW: adsNow,
+      MESSAGE: detail
+    };
+    if (consent) rich.SMS = sms;
+
+    var saved = await saveContact(apiKey, listId, email, rich);
+    if (!saved.ok) {
+      var minimal = {
+        FIRSTNAME: firstName,
+        LASTNAME: [lastName, shop, city, sms].join(" · ").slice(0, 200),
+        STATE: state,
+        OPT_IN_SOURCE: source,
+        OPT_IN_DATE: stamp
+      };
+      if (consent) minimal.SMS = sms;
+      saved = await saveContact(apiKey, listId, email, minimal);
+      if (!saved.ok) {
+        console.error("Brevo error:", saved.error);
+        return res.status(502).json({ error: "Could not save the request." });
+      }
+      console.log("Brevo saved with the basic contact fields.");
+    }
+
+    return res.status(200).json({ success: true });
+  } catch (err) {
+    console.error("Subscribe error:", err && err.message ? err.message : err);
+    return res.status(500).json({ error: "Internal error" });
+  }
+}
+
+function clean(value, max) {
+  return String(value || "").replace(/\s+/g, " ").trim().slice(0, max);
+}
+
+function normalizeSms(phone) {
+  var d = String(phone || "").replace(/\D/g, "");
+  if (d.length === 10) d = "1" + d;
+  if (d.length === 11 && d.charAt(0) === "1") return "+" + d;
+  return null;
+}
+
+async function saveContact(apiKey, listId, email, attributes) {
+  Object.keys(attributes).forEach(function (key) {
+    if (attributes[key] === "") delete attributes[key];
+  });
+  var response = await fetch("https://api.brevo.com/v3/contacts", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      "content-type": "application/json",
+      "api-key": apiKey
+    },
+    body: JSON.stringify({
+      email: email,
+      attributes: attributes,
+      listIds: [listId],
+      updateEnabled: true
+    })
+  });
+  var payload = await response.json().catch(function () { return {}; });
+  var ok = response.ok || response.status === 204 || payload.code === "duplicate_parameter";
+  return { ok: ok, error: payload };
 }
