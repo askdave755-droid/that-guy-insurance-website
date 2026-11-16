@@ -2,7 +2,7 @@
 
 Website for Nexus G Partners, a done-for-you Meta (Facebook and Instagram) ads agency for owner-run HVAC companies, focused on Phoenix and Arizona.
 
-Contact: (313) 765-1915 · dave@nexusgpartners.net
+Contact: (220) 208-0593 · dave@nexusgpartners.net
 
 Live Railway app: https://davidhughes.up.railway.app/
 Public domain: https://www.nexusgpartners.net/
@@ -46,7 +46,7 @@ Then open http://localhost:8080/ . The form will use the email-draft fallback, b
 - Legal entity name on the privacy policy and SMS terms. The public brand is Nexus G Partners. The previous policy said Nexus Growth Partners LLC; the insurance site has also been referred to as That Guy Insurance Firm LLC. The pages currently say `[Legal entity name to confirm]`.
 - Confirm the office address on the site and the legal pages: 3125 N 37th St, Phoenix, AZ 85018.
 - Confirm the SMS program still matches 10DLC: web-form checkbox plus verbal phone opt-in, Twilio as the SMS platform, and "message frequency varies" (the old page said 1–2 messages per quote).
-- The contact phone on the old legal pages was (760) 858-1333 and the email was askdave755@gmail.com. Both legal pages now use (313) 765-1915 and dave@nexusgpartners.net.
+- The contact phone on the old legal pages was (760) 858-1333 and the email was askdave755@gmail.com. Both legal pages now use (220) 208-0593 and dave@nexusgpartners.net.
 - `[Case study coming soon]` on the homepage. Add a real shop, the offer, and the booked jobs. Do not invent numbers.
 - `[Sample ads coming soon]` in the creative section.
 - `[Audit checklist coming soon]`, `[Pricing coming soon]`, and `[Timeline coming soon]` in the FAQ.

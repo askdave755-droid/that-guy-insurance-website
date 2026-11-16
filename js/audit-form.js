@@ -57,7 +57,7 @@
     var text = summary(payload);
     status.textContent = "";
     var p = document.createElement("p");
-    p.textContent = "This page could not save the form automatically. Your email app should open a draft to " + MAILTO + ". Send that draft to finish the request. If no draft opens, copy the details below or call (313) 765-1915.";
+    p.textContent = "This page could not save the form automatically. Your email app should open a draft to " + MAILTO + ". Send that draft to finish the request. If no draft opens, copy the details below or call (220) 208-0593.";
     var pre = document.createElement("pre");
     pre.textContent = text;
     status.appendChild(p);
